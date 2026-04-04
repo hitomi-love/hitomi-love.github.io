@@ -2,6 +2,7 @@ const canvas = document.getElementById("fieldCanvas");
 const ctx = canvas.getContext("2d");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const stage = document.getElementById("tiltStage");
+const floatingWindows = document.querySelectorAll(".floating-window");
 const playUrl = "https://play.google.com/store/apps/details?id=ai.agent1c.hitomi";
 
 const pointer = { x: 0.5, y: 0.5 };
@@ -9,6 +10,7 @@ let width = 0;
 let height = 0;
 let particles = [];
 let animationId = 0;
+let dragActive = false;
 
 function resizeCanvas() {
   const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
@@ -89,6 +91,7 @@ function bindTilt() {
   if (!stage || reduceMotion) return;
 
   stage.addEventListener("pointermove", (event) => {
+    if (dragActive) return;
     const rect = stage.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width;
     const y = (event.clientY - rect.top) / rect.height;
@@ -98,6 +101,7 @@ function bindTilt() {
   });
 
   stage.addEventListener("pointerleave", () => {
+    if (dragActive) return;
     stage.style.transform = "rotateX(0deg) rotateY(0deg)";
   });
 }
@@ -132,11 +136,75 @@ function bindPlayLinks() {
   });
 }
 
+function bindFloatingWindows() {
+  if (!floatingWindows.length) return;
+
+  floatingWindows.forEach((panel) => {
+    const state = { x: 0, y: 0, rotate: 0 };
+    let dragging = false;
+    let pointerId = null;
+    let startX = 0;
+    let startY = 0;
+    let startStateX = 0;
+    let startStateY = 0;
+    let startRotate = 0;
+
+    const apply = () => {
+      panel.style.setProperty("--drag-x", `${state.x}px`);
+      panel.style.setProperty("--drag-y", `${state.y}px`);
+      panel.style.setProperty("--drag-rotate", `${state.rotate}deg`);
+    };
+
+    const release = () => {
+      dragging = false;
+      pointerId = null;
+      dragActive = false;
+      panel.classList.remove("is-dragging");
+      stage.style.transform = "rotateX(0deg) rotateY(0deg)";
+    };
+
+    panel.addEventListener("pointerdown", (event) => {
+      dragging = true;
+      dragActive = true;
+      pointerId = event.pointerId;
+      startX = event.clientX;
+      startY = event.clientY;
+      startStateX = state.x;
+      startStateY = state.y;
+      startRotate = state.rotate;
+      panel.classList.add("is-dragging");
+      panel.setPointerCapture(pointerId);
+      event.preventDefault();
+    });
+
+    panel.addEventListener("pointermove", (event) => {
+      if (!dragging || event.pointerId !== pointerId) return;
+      const dx = event.clientX - startX;
+      const dy = event.clientY - startY;
+      state.x = Math.max(-58, Math.min(58, startStateX + dx));
+      state.y = Math.max(-48, Math.min(48, startStateY + dy));
+      state.rotate = Math.max(-14, Math.min(14, startRotate + dx * 0.08));
+      apply();
+      event.preventDefault();
+    });
+
+    panel.addEventListener("pointerup", (event) => {
+      if (event.pointerId !== pointerId) return;
+      release();
+    });
+
+    panel.addEventListener("pointercancel", release);
+    panel.addEventListener("lostpointercapture", release);
+    apply();
+  });
+}
+
 resizeCanvas();
 bindTilt();
 bindReveal();
 bindPointer();
 bindPlayLinks();
+bindFloatingWindows();
 
 if (!reduceMotion) {
   animationId = requestAnimationFrame(drawFrame);

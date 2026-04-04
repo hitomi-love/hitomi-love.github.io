@@ -211,8 +211,30 @@ code {
 
 .primary-button:hover,
 .secondary-button:hover,
+.play-badge-link:hover,
 .qr-link:hover {
   transform: translateY(-2px);
+}
+
+.play-badge-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  text-decoration: none;
+  transition: transform 180ms ease, filter 180ms ease;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.24));
+}
+
+.play-badge-link img {
+  display: block;
+  width: 194px;
+  max-width: 100%;
+  height: auto;
+}
+
+.download-badge {
+  margin-top: 8px;
 }
 
 .hero-tags {
@@ -240,6 +262,8 @@ code {
   min-height: 680px;
   perspective: 1600px;
   transform-style: preserve-3d;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .stage-grid,
@@ -322,6 +346,27 @@ code {
 .window {
   border-radius: 26px;
   overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  will-change: transform;
+  transition: transform 220ms ease, box-shadow 220ms ease, filter 220ms ease;
+}
+
+.window * {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.window:hover {
+  filter: brightness(1.04);
+}
+
+.window.is-dragging {
+  cursor: grabbing;
+  transition: none;
+  box-shadow: 0 34px 110px rgba(0, 0, 0, 0.34);
 }
 
 .window-bar {
@@ -344,7 +389,7 @@ code {
   left: 0;
   top: 10%;
   width: 320px;
-  transform: translateZ(110px) rotate(-8deg);
+  transform: translate3d(var(--drag-x, 0px), var(--drag-y, 0px), 110px) rotate(calc(-8deg + var(--drag-rotate, 0deg)));
 }
 
 .bubble {
@@ -360,7 +405,7 @@ code {
   right: 0;
   top: 16%;
   width: 280px;
-  transform: translateZ(80px) rotate(7deg);
+  transform: translate3d(var(--drag-x, 0px), var(--drag-y, 0px), 80px) rotate(calc(7deg + var(--drag-rotate, 0deg)));
 }
 
 .browser-body {
@@ -414,7 +459,7 @@ code {
   left: 12%;
   bottom: 8%;
   width: 340px;
-  transform: translateZ(70px) rotate(6deg);
+  transform: translate3d(var(--drag-x, 0px), var(--drag-y, 0px), 70px) rotate(calc(6deg + var(--drag-rotate, 0deg)));
 }
 
 .terminal-body {
