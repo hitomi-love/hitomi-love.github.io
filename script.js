@@ -4,7 +4,18 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 const stage = document.getElementById("tiltStage");
 const floatingWindows = document.querySelectorAll(".floating-window");
 const tiltCards = document.querySelectorAll("[data-tilt-card]");
+const hedgehogQuote = document.getElementById("hedgehogQuote");
 const playUrl = "https://play.google.com/store/apps/details?id=ai.agent1c.hitomi";
+const hedgehogLines = [
+  "Browser ready, fren.",
+  "Need a quick page peek?",
+  "Wallet watch is on.",
+  "Tiny window, big helper.",
+  "I can check onchain stuff.",
+  "Terminal path is optional.",
+  "Need me to open a tab?",
+  "Still here if you need me."
+];
 
 const pointer = { x: 0.5, y: 0.5 };
 let width = 0;
@@ -12,6 +23,7 @@ let height = 0;
 let particles = [];
 let animationId = 0;
 let dragActive = false;
+let hedgehogBubbleTimer = 0;
 
 function resizeCanvas() {
   const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
@@ -225,6 +237,32 @@ function bindTiltCards() {
   });
 }
 
+function bindHedgehogQuote() {
+  if (!hedgehogQuote) return;
+
+  const textNode = hedgehogQuote.querySelector(".hedgehog-quote-text");
+  if (!textNode) return;
+
+  const scheduleNext = (minMs, maxMs) => {
+    window.clearTimeout(hedgehogBubbleTimer);
+    const delay = reduceMotion ? maxMs : Math.round(minMs + Math.random() * (maxMs - minMs));
+    hedgehogBubbleTimer = window.setTimeout(showBubble, delay);
+  };
+
+  const showBubble = () => {
+    const line = hedgehogLines[Math.floor(Math.random() * hedgehogLines.length)];
+    textNode.textContent = line;
+    hedgehogQuote.classList.add("is-visible");
+
+    window.setTimeout(() => {
+      hedgehogQuote.classList.remove("is-visible");
+      scheduleNext(4800, 9600);
+    }, reduceMotion ? 2400 : 3200);
+  };
+
+  scheduleNext(700, 1300);
+}
+
 resizeCanvas();
 bindTilt();
 bindReveal();
@@ -232,10 +270,14 @@ bindPointer();
 bindPlayLinks();
 bindFloatingWindows();
 bindTiltCards();
+bindHedgehogQuote();
 
 if (!reduceMotion) {
   animationId = requestAnimationFrame(drawFrame);
 }
 
 window.addEventListener("resize", resizeCanvas);
-window.addEventListener("beforeunload", () => cancelAnimationFrame(animationId));
+window.addEventListener("beforeunload", () => {
+  cancelAnimationFrame(animationId);
+  window.clearTimeout(hedgehogBubbleTimer);
+});

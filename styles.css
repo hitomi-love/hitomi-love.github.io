@@ -352,9 +352,10 @@ code {
   top: 48%;
   width: 220px;
   height: 220px;
-  transform: translate(-50%, -50%) translateZ(90px);
+  transform: translate(-50%, -50%) translateZ(190px);
   display: grid;
   place-items: center;
+  z-index: 6;
 }
 
 .core-ring {
@@ -378,6 +379,49 @@ code {
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
 }
 
+.hedgehog-quote {
+  left: 53%;
+  top: 22%;
+  z-index: 7;
+  width: min(190px, 40%);
+  padding: 10px 12px;
+  border-radius: 18px 18px 18px 8px;
+  background:
+    linear-gradient(155deg, rgba(250, 240, 199, 0.97), rgba(248, 229, 183, 0.93));
+  color: #33250f;
+  border: 1px solid rgba(118, 94, 40, 0.18);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.2);
+  transform: translate3d(-6px, 8px, 230px) scale(0.92);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+
+.hedgehog-quote::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  bottom: -10px;
+  width: 16px;
+  height: 16px;
+  background: inherit;
+  border-right: 1px solid rgba(118, 94, 40, 0.18);
+  border-bottom: 1px solid rgba(118, 94, 40, 0.18);
+  transform: rotate(45deg);
+}
+
+.hedgehog-quote.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 230px) scale(1);
+}
+
+.hedgehog-quote-text {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
 .window,
 .status-panel,
 .feature-card {
@@ -388,6 +432,7 @@ code {
 }
 
 .window {
+  z-index: 3;
   border-radius: 26px;
   overflow: hidden;
   cursor: grab;
@@ -525,6 +570,7 @@ code {
 }
 
 .status-panel {
+  z-index: 2;
   right: 6%;
   bottom: 10%;
   width: 260px;
@@ -993,6 +1039,13 @@ code {
     bottom: 4%;
   }
 
+  .hedgehog-quote {
+    left: 48%;
+    top: 18%;
+    width: min(168px, 48%);
+    padding: 9px 11px;
+  }
+
   .solana-chip {
     top: 0;
     right: 2%;
@@ -1045,7 +1098,12 @@ code {
   .showcase-card,
   .showcase-card-linkedin,
   .showcase-card-terminal,
-  .showcase-card-browser {
+  .showcase-card-browser,
+  .hedgehog-quote {
     transform: none;
+  }
+
+  .hedgehog-quote {
+    transition: opacity 0ms linear;
   }
 }
