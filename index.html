@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hitomi | Floating AI for Android</title>
+  <meta name="description" content="Hitomi is a floating AI assistant for Android with chat, browsing, voice, and direct terminal access when you want it.">
+  <meta name="theme-color" content="#081220">
+  <meta property="og:title" content="Hitomi | Floating AI for Android">
+  <meta property="og:description" content="A floating AI assistant for Android that can browse and reach the Android terminal.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hitomi.love/">
+  <meta property="og:image" content="https://hitomi.love/assets/hitomi-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/hitomi-icon.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="fieldCanvas" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Hitomi home">
+      <img src="assets/hitomi-icon.png" alt="" width="36" height="36">
+      <span>Hitomi</span>
+    </a>
+    <nav class="topnav" aria-label="Primary">
+      <a href="#what">What It Is</a>
+      <a href="#download">Download</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">ANDROID OVERLAY INTELLIGENCE</p>
+        <h1>
+          A floating
+          <span>AI assistant</span>
+          that lives above your apps.
+        </h1>
+        <p class="lede">
+          Hitomi is a tiny hedgehog companion for Android. She can chat, browse inside a mini window, and reach Android terminal commands directly when you enable the advanced bridge.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-button" href="https://play.google.com/store/apps/details?id=ai.agent1c.hitomi" target="_blank" rel="noreferrer">Get It on Google Play</a>
+          <a class="secondary-button" href="#download">Scan the QR code</a>
+        </div>
+        <ul class="hero-tags" aria-label="Key capabilities">
+          <li>Floating overlay</li>
+          <li>Mini browser</li>
+          <li>Voice optional</li>
+          <li>Terminal bridge</li>
+        </ul>
+      </div>
+
+      <div class="hero-stage reveal" id="tiltStage">
+        <div class="stage-grid" aria-hidden="true"></div>
+        <div class="orbital orbital-one" aria-hidden="true"></div>
+        <div class="orbital orbital-two" aria-hidden="true"></div>
+
+        <article class="window window-chat">
+          <div class="window-bar">
+            <span>Hitomi</span>
+            <span>LIVE</span>
+          </div>
+          <div class="window-body">
+            <p class="bubble">
+              “I can open a browser pane, check what is on screen, or run a terminal command if you want the advanced path.”
+            </p>
+          </div>
+        </article>
+
+        <article class="window window-browser">
+          <div class="window-bar">
+            <span>Browser</span>
+            <span>URL READY</span>
+          </div>
+          <div class="window-body browser-body">
+            <div class="browser-line wide"></div>
+            <div class="browser-line"></div>
+            <div class="browser-line short"></div>
+            <div class="browser-page">
+              <span class="browser-dot"></span>
+              <span class="browser-dot"></span>
+              <span class="browser-dot"></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="window window-terminal">
+          <div class="window-bar">
+            <span>Terminal</span>
+            <span>OPTIONAL</span>
+          </div>
+          <div class="window-body terminal-body">
+            <p><span>$</span> termux-info</p>
+            <p><span>$</span> whoami</p>
+            <p><span>$</span> am start ...</p>
+            <p class="ok">bridge online</p>
+          </div>
+        </article>
+
+        <article class="status-panel">
+          <div>
+            <strong>Android</strong>
+            <span>Overlay active</span>
+          </div>
+          <div>
+            <strong>Tooling</strong>
+            <span>Browser + terminal</span>
+          </div>
+          <div>
+            <strong>Form</strong>
+            <span>Small. Fast. Weirdly useful.</span>
+          </div>
+        </article>
+
+        <div class="hedgehog-core">
+          <div class="core-ring"></div>
+          <img src="assets/hitomi-icon.png" alt="Hitomi hedgehog icon">
+        </div>
+      </div>
+    </section>
+
+    <section class="section what" id="what">
+      <div class="section-intro reveal">
+        <p class="eyebrow">WHAT HITOMI IS</p>
+        <h2>Built like a playful overlay. Behaves like a real operator.</h2>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card reveal">
+          <p class="feature-kicker">01</p>
+          <h3>Floats above your screen</h3>
+          <p>Hitomi lives as a draggable hedgehog overlay, so you can call on her without leaving the app you are already using.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <p class="feature-kicker">02</p>
+          <h3>Browses inside the app</h3>
+          <p>She can open a compact browser window for lookups, step-by-step navigation, and lightweight web tasks.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <p class="feature-kicker">03</p>
+          <h3>Reaches Android terminal commands</h3>
+          <p>The advanced bridge can reach Android terminal commands directly through Termux when you deliberately turn that mode on.</p>
+        </article>
+
+        <article class="feature-card feature-card-wide reveal">
+          <p class="feature-kicker">04</p>
+          <h3>Two modes, one companion</h3>
+          <p>Hitomi is friendly by default for everyday Android users, but she still has enough teeth for power users who want browsing, voice, and terminal-connected workflows in one tiny assistant.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section download" id="download">
+      <div class="download-copy reveal">
+        <p class="eyebrow">DOWNLOAD</p>
+        <h2>Install Hitomi on Google Play.</h2>
+        <p>
+          Scan the QR code or open the Play listing directly. The app is live now.
+        </p>
+        <a class="primary-button" href="https://play.google.com/store/apps/details?id=ai.agent1c.hitomi" target="_blank" rel="noreferrer">Open the Play listing</a>
+        <p class="microcopy">Package: <code>ai.agent1c.hitomi</code></p>
+      </div>
+
+      <aside class="download-card reveal">
+        <div class="download-card-top">
+          <img class="download-icon" src="assets/hitomi-icon.png" alt="" width="72" height="72">
+          <div>
+            <p class="download-label">Hitomi</p>
+            <p class="download-subtitle">Floating AI for Android</p>
+          </div>
+        </div>
+
+        <img class="qr-code" src="assets/hitomi-play-qr.png" alt="QR code linking to the Hitomi Google Play page">
+
+        <a class="qr-link" href="https://play.google.com/store/apps/details?id=ai.agent1c.hitomi" target="_blank" rel="noreferrer">
+          play.google.com/store/apps/details?id=ai.agent1c.hitomi
+        </a>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Hitomi for Android. Built by <a href="https://agent1c.ai/" target="_blank" rel="noreferrer">Agent1c.ai</a>.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
