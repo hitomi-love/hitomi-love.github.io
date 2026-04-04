@@ -559,6 +559,138 @@ code {
   line-height: 1.8;
 }
 
+.showcase {
+  position: relative;
+}
+
+.showcase::before {
+  content: "";
+  position: absolute;
+  inset: 120px 4% 40px;
+  border-radius: 48px;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(95, 227, 255, 0.16), transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(255, 181, 108, 0.14), transparent 28%),
+    linear-gradient(180deg, rgba(8, 15, 26, 0.36), rgba(8, 15, 26, 0.12));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.showcase .section-intro {
+  position: relative;
+  z-index: 1;
+}
+
+.showcase-lede {
+  max-width: 62ch;
+  margin: 18px 0 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.showcase-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  align-items: start;
+}
+
+.showcase-card {
+  position: relative;
+  padding: 18px;
+  border-radius: 30px;
+  background:
+    linear-gradient(165deg, rgba(7, 17, 27, 0.78), rgba(9, 20, 32, 0.88)),
+    var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 34px 90px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.showcase-card::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.showcase-card:hover {
+  border-color: rgba(95, 227, 255, 0.26);
+  box-shadow: 0 42px 110px rgba(0, 0, 0, 0.34);
+}
+
+.showcase-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.showcase-card-top span:last-child {
+  color: var(--acid);
+}
+
+.showcase-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)),
+    rgba(2, 5, 10, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 18px 44px rgba(0, 0, 0, 0.26);
+}
+
+.showcase-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 22%),
+    radial-gradient(circle at 50% 0%, rgba(95, 227, 255, 0.18), transparent 36%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.showcase-screen {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.showcase-card p {
+  margin: 16px 2px 2px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.showcase-card-linkedin {
+  transform: perspective(1400px) rotateX(var(--card-rotate-x, 0deg)) rotateY(var(--card-rotate-y, 0deg)) rotate(-5deg) translateY(18px);
+}
+
+.showcase-card-terminal {
+  transform: perspective(1400px) rotateX(var(--card-rotate-x, 0deg)) rotateY(var(--card-rotate-y, 0deg)) translateY(-10px);
+}
+
+.showcase-card-browser {
+  transform: perspective(1400px) rotateX(var(--card-rotate-x, 0deg)) rotateY(var(--card-rotate-y, 0deg)) rotate(4deg) translateY(34px);
+}
+
 .download {
   display: grid;
   grid-template-columns: 1fr 380px;
@@ -667,12 +799,19 @@ code {
   }
 
   .download,
-  .feature-grid {
+  .feature-grid,
+  .showcase-grid {
     grid-template-columns: 1fr;
   }
 
   .feature-card-wide {
     grid-column: auto;
+  }
+
+  .showcase-card-linkedin,
+  .showcase-card-terminal,
+  .showcase-card-browser {
+    transform: perspective(1400px) rotateX(var(--card-rotate-x, 0deg)) rotateY(var(--card-rotate-y, 0deg)) rotate(0deg) translateY(0);
   }
 }
 
@@ -733,6 +872,14 @@ code {
   .footer {
     padding-top: 56px;
   }
+
+  .showcase::before {
+    inset: 100px 0 16px;
+  }
+
+  .showcase-card {
+    padding: 16px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -744,5 +891,12 @@ code {
   .reveal {
     animation: none;
     transition: none;
+  }
+
+  .showcase-card,
+  .showcase-card-linkedin,
+  .showcase-card-terminal,
+  .showcase-card-browser {
+    transform: none;
   }
 }

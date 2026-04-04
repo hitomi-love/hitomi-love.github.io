@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const stage = document.getElementById("tiltStage");
 const floatingWindows = document.querySelectorAll(".floating-window");
+const tiltCards = document.querySelectorAll("[data-tilt-card]");
 const playUrl = "https://play.google.com/store/apps/details?id=ai.agent1c.hitomi";
 
 const pointer = { x: 0.5, y: 0.5 };
@@ -199,12 +200,38 @@ function bindFloatingWindows() {
   });
 }
 
+function bindTiltCards() {
+  if (!tiltCards.length || reduceMotion) return;
+
+  tiltCards.forEach((card) => {
+    const reset = () => {
+      card.style.setProperty("--card-rotate-x", "0deg");
+      card.style.setProperty("--card-rotate-y", "0deg");
+    };
+
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+      const rotateY = (x - 0.5) * 10;
+      const rotateX = (0.5 - y) * 10;
+      card.style.setProperty("--card-rotate-x", `${rotateX}deg`);
+      card.style.setProperty("--card-rotate-y", `${rotateY}deg`);
+    });
+
+    card.addEventListener("pointerleave", reset);
+    card.addEventListener("pointercancel", reset);
+    reset();
+  });
+}
+
 resizeCanvas();
 bindTilt();
 bindReveal();
 bindPointer();
 bindPlayLinks();
 bindFloatingWindows();
+bindTiltCards();
 
 if (!reduceMotion) {
   animationId = requestAnimationFrame(drawFrame);
