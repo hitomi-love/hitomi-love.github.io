@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 212" role="img" aria-labelledby="title desc">
+  <title id="title">Solana logo</title>
+  <desc id="desc">Three offset bars with a green to purple gradient.</desc>
+  <defs>
+    <linearGradient id="solanaGradient" x1="24" y1="16" x2="216" y2="196" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00ffa3"/>
+      <stop offset="0.55" stop-color="#59f0ff"/>
+      <stop offset="1" stop-color="#dc1fff"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#solanaGradient)" d="M45 26c3.8-4.4 9.4-7 15.2-7h168.7c10.5 0 15.9 12.6 8.7 20.3l-26.4 28.5c-3.8 4.1-9.1 6.4-14.7 6.4H27.8c-10.4 0-15.8-12.5-8.8-20.1L45 26z"/>
+  <path fill="url(#solanaGradient)" d="M45 92c3.8-4.4 9.4-7 15.2-7h168.7c10.5 0 15.9 12.6 8.7 20.3l-26.4 28.5c-3.8 4.1-9.1 6.4-14.7 6.4H27.8c-10.4 0-15.8-12.5-8.8-20.1L45 92z"/>
+  <path fill="url(#solanaGradient)" d="M45 158c3.8-4.4 9.4-7 15.2-7h168.7c10.5 0 15.9 12.6 8.7 20.3l-26.4 28.5c-3.8 4.1-9.1 6.4-14.7 6.4H27.8c-10.4 0-15.8-12.5-8.8-20.1l26-27.1z"/>
+</svg>

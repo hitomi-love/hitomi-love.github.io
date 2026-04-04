@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hitomi | Floating AI for Android</title>
-  <meta name="description" content="Hitomi is a floating AI assistant for Android with chat, browsing, voice, and direct terminal access when you want it.">
+  <meta name="description" content="Hitomi is a floating AI assistant for Android with browsing, terminal access, Solana wallet login, and onchain monitoring.">
   <meta name="theme-color" content="#081220">
   <meta property="og:title" content="Hitomi | Floating AI for Android">
-  <meta property="og:description" content="A floating AI assistant for Android that can browse and reach the Android terminal.">
+  <meta property="og:description" content="A floating AI assistant for Android with browser tools, terminal reach, Solana wallet login, and onchain monitoring.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hitomi.love/">
   <meta property="og:image" content="https://hitomi.love/assets/hitomi-icon.png">
@@ -43,7 +43,7 @@
           that lives above your apps.
         </h1>
         <p class="lede">
-          Hitomi is a tiny hedgehog companion for Android. She can chat, browse inside a mini window, and reach Android terminal commands directly when you enable the advanced bridge.
+          Hitomi is a tiny hedgehog companion for Android. She can chat, browse inside a mini window, reach Android terminal commands when you enable the advanced bridge, and for Solana users she can sign in with a wallet and monitor onchain activity directly.
         </p>
         <div class="hero-actions">
           <a class="play-badge-link" href="https://play.google.com/store/apps/details?id=ai.agent1c.hitomi" target="_blank" rel="noreferrer">
@@ -54,7 +54,8 @@
         <ul class="hero-tags" aria-label="Key capabilities">
           <li>Floating overlay</li>
           <li>Mini browser</li>
-          <li>Voice optional</li>
+          <li>Solana login</li>
+          <li>Onchain readouts</li>
           <li>Terminal bridge</li>
         </ul>
       </div>
@@ -63,6 +64,14 @@
         <div class="stage-grid" aria-hidden="true"></div>
         <div class="orbital orbital-one" aria-hidden="true"></div>
         <div class="orbital orbital-two" aria-hidden="true"></div>
+
+        <article class="solana-chip" aria-label="Solana wallet mode">
+          <img src="assets/solana-mark.svg" alt="" width="68" height="56">
+          <div>
+            <strong>Solana mode</strong>
+            <span>wallet login + onchain awareness</span>
+          </div>
+        </article>
 
         <article class="window floating-window window-chat">
           <div class="window-bar">
@@ -153,11 +162,42 @@
           <p>The advanced bridge can reach Android terminal commands directly through Termux when you deliberately turn that mode on.</p>
         </article>
 
-        <article class="feature-card feature-card-wide reveal">
+        <article class="feature-card reveal">
           <p class="feature-kicker">04</p>
-          <h3>Two modes, one companion</h3>
-          <p>Hitomi is friendly by default for everyday Android users, but she still has enough teeth for power users who want browsing, voice, and terminal-connected workflows in one tiny assistant.</p>
+          <h3>Logs in with a Solana wallet</h3>
+          <p>Users can log in with a Solana wallet, unlocking a wallet-aware mode for people who already live onchain instead of treating crypto as a separate app universe.</p>
         </article>
+
+        <article class="feature-card feature-card-wide reveal">
+          <p class="feature-kicker">05</p>
+          <h3>Two modes, one companion</h3>
+          <p>Hitomi is friendly by default for everyday Android users, but she still has enough teeth for power users who want browsing, voice, Solana-aware monitoring, and terminal-connected workflows in one tiny assistant.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section solana">
+      <div class="solana-panel reveal" data-tilt-card>
+        <div class="solana-mark-wrap">
+          <img class="solana-mark" src="assets/solana-mark.svg" alt="Solana logo" width="160" height="132">
+        </div>
+
+        <div class="solana-copy">
+          <p class="eyebrow">SOLANA MODE</p>
+          <h2>Wallet login, onchain monitoring, and a current free usage path.</h2>
+          <p class="solana-lede">
+            Hitomi can authenticate through a Solana wallet flow, inspect wallet balance and recent transactions, and use that onchain context as part of the conversation instead of treating crypto like a disconnected side topic.
+          </p>
+          <ul class="solana-pills" aria-label="Solana capabilities">
+            <li>Wallet-auth login</li>
+            <li>Balance checks</li>
+            <li>Recent transaction monitoring</li>
+            <li>Onchain-aware chat</li>
+          </ul>
+          <p class="solana-note">
+            Wallet-authenticated users currently receive <strong>12,000 LLM tokens per day</strong>. That is a live perk right now, not a forever guarantee.
+          </p>
+        </div>
       </div>
     </section>
 
