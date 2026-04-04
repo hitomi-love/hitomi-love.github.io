@@ -2,6 +2,7 @@ const canvas = document.getElementById("fieldCanvas");
 const ctx = canvas.getContext("2d");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const stage = document.getElementById("tiltStage");
+const hedgehogCore = document.querySelector(".hedgehog-core");
 const floatingWindows = document.querySelectorAll(".floating-window");
 const tiltCards = document.querySelectorAll("[data-tilt-card]");
 const hedgehogQuote = document.getElementById("hedgehogQuote");
@@ -111,11 +112,13 @@ function bindTilt() {
     const rotateY = (x - 0.5) * 12;
     const rotateX = (0.5 - y) * 10;
     stage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    positionHedgehogQuote();
   });
 
   stage.addEventListener("pointerleave", () => {
     if (dragActive) return;
     stage.style.transform = "rotateX(0deg) rotateY(0deg)";
+    positionHedgehogQuote();
   });
 }
 
@@ -174,6 +177,7 @@ function bindFloatingWindows() {
       dragActive = false;
       panel.classList.remove("is-dragging");
       stage.style.transform = "rotateX(0deg) rotateY(0deg)";
+      positionHedgehogQuote();
     };
 
     panel.addEventListener("pointerdown", (event) => {
@@ -237,6 +241,13 @@ function bindTiltCards() {
   });
 }
 
+function positionHedgehogQuote() {
+  if (!hedgehogQuote || !hedgehogCore) return;
+  const rect = hedgehogCore.getBoundingClientRect();
+  hedgehogQuote.style.left = `${rect.left + rect.width / 2}px`;
+  hedgehogQuote.style.top = `${rect.top + rect.height * 0.16}px`;
+}
+
 function bindHedgehogQuote() {
   if (!hedgehogQuote) return;
 
@@ -260,6 +271,7 @@ function bindHedgehogQuote() {
     }, reduceMotion ? 2400 : 3200);
   };
 
+  positionHedgehogQuote();
   scheduleNext(700, 1300);
 }
 
@@ -276,7 +288,11 @@ if (!reduceMotion) {
   animationId = requestAnimationFrame(drawFrame);
 }
 
-window.addEventListener("resize", resizeCanvas);
+window.addEventListener("resize", () => {
+  resizeCanvas();
+  positionHedgehogQuote();
+});
+window.addEventListener("scroll", positionHedgehogQuote, { passive: true });
 window.addEventListener("beforeunload", () => {
   cancelAnimationFrame(animationId);
   window.clearTimeout(hedgehogBubbleTimer);
