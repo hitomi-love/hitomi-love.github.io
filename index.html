@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hitomi | Floating AI for Android</title>
-  <meta name="description" content="Hitomi is a floating AI assistant for Android with browsing, terminal access, Solana wallet login, and onchain monitoring.">
+  <meta name="description" content="Hitomi is a floating AI assistant for Android with browsing, terminal access, Solana wallet login, onchain monitoring, and an Open Hitomi F-Droid build for local Ollama on Termux.">
   <meta name="theme-color" content="#081220">
   <meta property="og:title" content="Hitomi | Floating AI for Android">
-  <meta property="og:description" content="A floating AI assistant for Android with browser tools, terminal reach, Solana wallet login, and onchain monitoring.">
+  <meta property="og:description" content="A floating AI assistant for Android with browser tools, terminal reach, Solana wallet login, onchain monitoring, and an Open Hitomi F-Droid build for local Ollama on Termux.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hitomi.love/">
   <meta property="og:image" content="https://hitomi.love/assets/hitomi-icon.png">
@@ -49,6 +49,10 @@
           <a class="play-badge-link" href="https://play.google.com/store/apps/details?id=ai.agent1c.hitomi" target="_blank" rel="noreferrer">
             <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="194" height="75">
           </a>
+          <a class="fdroid-button" href="https://f-droid.org/packages/ai.agent1c.hitomi.open/" target="_blank" rel="noreferrer">
+            <span class="store-button-kicker">F-Droid</span>
+            <span class="store-button-copy">Download Open Hitomi</span>
+          </a>
           <a class="secondary-button" href="#download">Scan the QR code</a>
         </div>
         <ul class="hero-tags" aria-label="Key capabilities">
@@ -56,6 +60,7 @@
           <li>Mini browser</li>
           <li>Solana login</li>
           <li>Onchain readouts</li>
+          <li>Local Ollama</li>
           <li>Terminal bridge</li>
         </ul>
       </div>
@@ -250,14 +255,21 @@
     <section class="section download" id="download">
       <div class="download-copy reveal">
         <p class="eyebrow">DOWNLOAD</p>
-        <h2>Install Hitomi on Google Play.</h2>
+        <h2>Install Hitomi for Android.</h2>
         <p>
-          Scan the QR code or open the Play listing directly. The app is live now.
+          Scan the QR code or open the Play listing directly. For a fully sovereign setup, install Open Hitomi from F-Droid and connect it to Ollama running on your phone in Termux.
         </p>
-        <a class="play-badge-link download-badge" href="https://play.google.com/store/apps/details?id=ai.agent1c.hitomi" target="_blank" rel="noreferrer">
-          <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="194" height="75">
-        </a>
-        <p class="microcopy">Package: <code>ai.agent1c.hitomi</code></p>
+        <div class="download-actions" aria-label="Download options">
+          <a class="play-badge-link download-badge" href="https://play.google.com/store/apps/details?id=ai.agent1c.hitomi" target="_blank" rel="noreferrer">
+            <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="194" height="75">
+          </a>
+          <a class="fdroid-button download-fdroid" href="https://f-droid.org/packages/ai.agent1c.hitomi.open/" target="_blank" rel="noreferrer">
+            <span class="store-button-kicker">F-Droid</span>
+            <span class="store-button-copy">Download Open Hitomi</span>
+          </a>
+        </div>
+        <p class="microcopy">Google Play package: <code>ai.agent1c.hitomi</code></p>
+        <p class="microcopy">Open Hitomi package: <code>ai.agent1c.hitomi.open</code></p>
       </div>
 
       <aside class="download-card reveal">

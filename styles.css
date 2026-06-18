@@ -185,16 +185,21 @@ code {
 }
 
 .primary-button,
-.secondary-button {
+.secondary-button,
+.fdroid-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 56px;
-  padding: 0 24px;
   border-radius: 999px;
   font-weight: 700;
   text-decoration: none;
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.primary-button,
+.secondary-button {
+  min-height: 56px;
+  padding: 0 24px;
 }
 
 .primary-button {
@@ -211,9 +216,42 @@ code {
 
 .primary-button:hover,
 .secondary-button:hover,
+.fdroid-button:hover,
 .play-badge-link:hover,
 .qr-link:hover {
   transform: translateY(-2px);
+}
+
+.fdroid-button {
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 64px;
+  min-width: min(100%, 238px);
+  padding: 12px 22px;
+  border: 1px solid rgba(216, 255, 101, 0.42);
+  background:
+    linear-gradient(135deg, rgba(216, 255, 101, 0.96), rgba(95, 227, 255, 0.88));
+  color: var(--ink);
+  box-shadow: 0 16px 34px rgba(95, 227, 255, 0.2);
+}
+
+.store-button-kicker,
+.store-button-copy {
+  display: block;
+}
+
+.store-button-kicker {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.store-button-copy {
+  margin-top: 3px;
+  font-size: 0.98rem;
+  line-height: 1.18;
 }
 
 .play-badge-link {
@@ -235,6 +273,18 @@ code {
 
 .download-badge {
   margin-top: 8px;
+}
+
+.download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.download-fdroid {
+  min-width: min(100%, 254px);
 }
 
 .hero-tags {
@@ -1009,6 +1059,16 @@ code {
 
   .topnav a {
     font-size: 0.86rem;
+  }
+
+  .hero-actions,
+  .download-actions {
+    align-items: stretch;
+  }
+
+  .fdroid-button,
+  .secondary-button {
+    width: 100%;
   }
 
   .hero {

@@ -7,6 +7,7 @@ const floatingWindows = document.querySelectorAll(".floating-window");
 const tiltCards = document.querySelectorAll("[data-tilt-card]");
 const hedgehogQuote = document.getElementById("hedgehogQuote");
 const playUrl = "https://play.google.com/store/apps/details?id=ai.agent1c.hitomi";
+const fdroidUrl = "https://f-droid.org/packages/ai.agent1c.hitomi.open/";
 const hedgehogLines = [
   "Browser ready, fren.",
   "Need a quick page peek?",
@@ -149,6 +150,10 @@ function bindPointer() {
 function bindPlayLinks() {
   document.querySelectorAll(`a[href="${playUrl}"]`).forEach((link) => {
     link.setAttribute("aria-label", "Open Hitomi on Google Play");
+  });
+
+  document.querySelectorAll(`a[href="${fdroidUrl}"]`).forEach((link) => {
+    link.setAttribute("aria-label", "Download Open Hitomi on F-Droid");
   });
 }
 
