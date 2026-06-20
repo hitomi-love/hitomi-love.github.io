@@ -147,7 +147,7 @@ function bindPointer() {
   }, { passive: true });
 }
 
-function bindPlayLinks() {
+function bindStoreLinks() {
   document.querySelectorAll(`a[href="${playUrl}"]`).forEach((link) => {
     link.setAttribute("aria-label", "Open Hitomi on Google Play");
   });
@@ -284,7 +284,7 @@ resizeCanvas();
 bindTilt();
 bindReveal();
 bindPointer();
-bindPlayLinks();
+bindStoreLinks();
 bindFloatingWindows();
 bindTiltCards();
 bindHedgehogQuote();
